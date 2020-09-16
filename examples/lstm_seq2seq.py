@@ -126,8 +126,8 @@ for i, (input_text, target_text) in enumerate(zip(input_texts, target_texts)):
     decoder_target_data[i, t:, target_token_index[' ']] = 1.
 # Define an input sequence and process it.
 encoder_inputs = Input(shape=(None, num_encoder_tokens))
-encoder = LSTM(latent_dim, return_state=True)
-encoder_outputs, state_h, state_c = encoder(encoder_inputs)
+encoder_lstm = LSTM(latent_dim, return_state=True)
+encoder_outputs, state_h, state_c = encoder_lstm(encoder_inputs)
 # We discard `encoder_outputs` and only keep the states.
 encoder_states = [state_h, state_c]
 

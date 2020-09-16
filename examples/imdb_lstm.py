@@ -16,11 +16,11 @@ from what you see with CNNs/MLPs/etc.
 '''
 from __future__ import print_function
 
-from keras.preprocessing import sequence
-from keras.models import Sequential
-from keras.layers import Dense, Embedding
-from keras.layers import LSTM
-from keras.datasets import imdb
+from tensorflow.keras.preprocessing import sequence
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Embedding
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.datasets import imdb
 
 max_features = 20000
 # cut texts after this number of words (among top max_features most common words)

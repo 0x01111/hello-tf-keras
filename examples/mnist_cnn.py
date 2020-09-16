@@ -4,7 +4,6 @@ Gets to 99.25% test accuracy after 12 epochs
 (there is still a lot of margin for parameter tuning).
 16 seconds per epoch on a GRID K520 GPU.
 
-loongson3a:
 Test loss: 0.88470858335495
 Test accuracy: 0.807699978351593
 20分钟一轮
