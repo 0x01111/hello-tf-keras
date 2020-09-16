@@ -65,12 +65,12 @@ Experiment of Net2DeeperNet ...
 
 from __future__ import print_function
 import numpy as np
-import keras
-from keras import backend as K
-from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
-from keras.optimizers import SGD
-from keras.datasets import mnist
+import tensorflow.keras
+from tensorflow.keras import backend as K
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
+from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.datasets import mnist
 
 if K.image_data_format() == 'channels_first':
     input_shape = (1, 28, 28)  # image shape
@@ -86,7 +86,7 @@ def preprocess_input(x):
 
 
 def preprocess_output(y):
-    return keras.utils.to_categorical(y)
+    return tensorflow.keras.utils.to_categorical(y)
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 x_train, x_test = map(preprocess_input, [x_train, x_test])
