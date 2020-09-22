@@ -41,14 +41,14 @@ applied as a bias because we know the MNIST digits are mapped to [0, 1].
 from __future__ import print_function
 import numpy as np
 
-from keras.datasets import mnist
-from keras.models import Model
-from keras.layers import Activation
-from keras.layers import UpSampling2D, Conv2D, MaxPooling2D
-from keras.layers import Input, BatchNormalization, ELU
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Activation
+from tensorflow.keras.layers import UpSampling2D, Conv2D, MaxPooling2D
+from tensorflow.keras.layers import Input, BatchNormalization, ELU
 import matplotlib.pyplot as plt
-import keras.backend as K
-from keras import layers
+import tensorflow.keras.backend as K
+from tensorflow.keras import layers
 
 
 def convresblock(x, nfeats=8, ksize=3, nskipped=2, elu=True):
@@ -171,6 +171,8 @@ y = Activation('hard_sigmoid')(y)
 # Define the model and it's mean square error loss, and compile it with Adam
 model = Model(img_input, y)
 model.compile('adam', 'mse')
+
+model.summary()
 
 # Fit the model
 model.fit(x_train, x_train,

@@ -21,6 +21,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Embedding
 from tensorflow.keras.layers import LSTM
 from tensorflow.keras.datasets import imdb
+import tensorflow
 
 max_features = 20000
 # cut texts after this number of words (among top max_features most common words)
@@ -32,9 +33,16 @@ print('Loading data...')
 print(len(x_train), 'train sequences')
 print(len(x_test), 'test sequences')
 
+print(x_train[0])
+print(y_train[0])
+
 print('Pad sequences (samples x time)')
 x_train = sequence.pad_sequences(x_train, maxlen=maxlen)
 x_test = sequence.pad_sequences(x_test, maxlen=maxlen)
+
+print(x_train[0])
+print(y_train[0])
+
 print('x_train shape:', x_train.shape)
 print('x_test shape:', x_test.shape)
 
@@ -48,6 +56,8 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
+
+tensorflow.keras.utils.plot_model(model, "imdb_lstm_model.png", show_shapes=True)
 
 print('Train...')
 model.fit(x_train, y_train,

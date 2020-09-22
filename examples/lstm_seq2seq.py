@@ -51,8 +51,8 @@ models are more common in this domain.
 '''
 from __future__ import print_function
 
-from keras.models import Model
-from keras.layers import Input, LSTM, Dense
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, LSTM, Dense
 import numpy as np
 
 batch_size = 64  # Batch size for training.
@@ -61,6 +61,7 @@ latent_dim = 256  # Latent dimensionality of the encoding space.
 num_samples = 10000  # Number of samples to train on.
 # Path to the data txt file on disk.
 data_path = 'fra-eng/fra.txt'
+
 
 # Vectorize the data.
 input_texts = []
@@ -149,6 +150,9 @@ model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
 # Run training
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy',
               metrics=['accuracy'])
+
+tensorflow.keras.utils.plot_model(model, "lstm_seq2seq_model.png", show_shapes=True)
+
 model.fit([encoder_input_data, decoder_input_data], decoder_target_data,
           batch_size=batch_size,
           epochs=epochs,

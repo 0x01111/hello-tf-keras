@@ -46,6 +46,8 @@ model.add(Dense(num_classes, activation='softmax'))
 
 model.summary()
 
+tensorflow.keras.utils.plot_model(model, "./mnist_mlp_model.png", show_shapes=True)
+
 model.compile(loss='categorical_crossentropy',
               optimizer=RMSprop(),
               metrics=['accuracy'])

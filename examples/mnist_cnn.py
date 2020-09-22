@@ -64,6 +64,8 @@ model.compile(loss=tensorflow.keras.losses.categorical_crossentropy,
               optimizer=tensorflow.keras.optimizers.Adadelta(),
               metrics=['accuracy'])
 
+tensorflow.keras.utils.plot_model(model, "mnist_cnn_model.png", show_shapes=True)
+
 model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
