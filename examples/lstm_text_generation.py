@@ -12,12 +12,12 @@ has at least ~100k characters. ~1M is better.
 '''
 
 from __future__ import print_function
-from keras.callbacks import LambdaCallback
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
-from keras.optimizers import RMSprop
-from keras.utils.data_utils import get_file
+from tensorflow.keras.callbacks import LambdaCallback
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.python.keras.utils.data_utils import get_file
 import numpy as np
 import random
 import sys
@@ -59,6 +59,9 @@ print('Build model...')
 model = Sequential()
 model.add(LSTM(128, input_shape=(maxlen, len(chars))))
 model.add(Dense(len(chars), activation='softmax'))
+
+from tensorflow.keras.utils import plot_model
+plot_model(model, "lstm_text_generation_model.png", show_shapes=True)
 
 optimizer = RMSprop(learning_rate=0.01)
 model.compile(loss='categorical_crossentropy', optimizer=optimizer)

@@ -40,8 +40,8 @@ from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from keras.models import Sequential
-from keras.layers import Dense, LSTM
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, LSTM
 
 # ----------------------------------------------------------
 # EDITABLE PARAMETERS
@@ -149,6 +149,9 @@ def create_model(stateful):
               stateful=stateful))
     model.add(Dense(1))
     model.compile(loss='mse', optimizer='adam')
+    from tensorflow.keras.utils import plot_model
+    plot_model(model, "lstm_stateful_model.png", show_shapes=True)
+
     return model
 
 print('Creating Stateful Model...')

@@ -69,7 +69,7 @@ def add_ngram(sequences, token_indice, ngram_range=2):
 
 # Set parameters:
 # ngram_range = 2 will add bi-grams features
-ngram_range = 1
+ngram_range = 2
 max_features = 20000
 maxlen = 400
 batch_size = 32

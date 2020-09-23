@@ -4,11 +4,11 @@ on the Reuters newswire topic classification task.
 from __future__ import print_function
 
 import numpy as np
-import keras
-from keras.datasets import reuters
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation
-from keras.preprocessing.text import Tokenizer
+from tensorflow import keras
+from tensorflow.keras.datasets import reuters
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Activation
+from tensorflow.keras.preprocessing.text import Tokenizer
 
 max_words = 1000
 batch_size = 32
@@ -48,6 +48,8 @@ model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
+from tensorflow.keras.utils import plot_model
+plot_model(model, "reuters_mlp_model.png", show_shapes=True)
 
 history = model.fit(x_train, y_train,
                     batch_size=batch_size,
