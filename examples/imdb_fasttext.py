@@ -140,6 +140,9 @@ model.compile(loss='binary_crossentropy',
 
 model.summary()
 
+from tensorflow.keras.utils import plot_model
+plot_model(model, "imdb_fasttest_model.png", show_shapes=True)
+
 model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
