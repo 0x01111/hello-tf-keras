@@ -18,12 +18,12 @@ Bi-gram  |            0.9056|    2|GTx 980M GPU
 from __future__ import print_function
 import numpy as np
 
-from keras.preprocessing import sequence
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import Embedding
-from keras.layers import GlobalAveragePooling1D
-from keras.datasets import imdb
+from tensorflow.keras.preprocessing import sequence
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Embedding
+from tensorflow.keras.layers import GlobalAveragePooling1D
+from tensorflow.keras.datasets import imdb
 
 
 def create_ngram_set(input_list, ngram_value=2):
@@ -137,6 +137,8 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
+
+model.summary()
 
 model.fit(x_train, y_train,
           batch_size=batch_size,
