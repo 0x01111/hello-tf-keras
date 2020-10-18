@@ -21,7 +21,7 @@ def WAD_model(x, y_actual, batch_fem, feature_length, embedding_length, hidden_l
     y_deep = tf.reshape(tf.multiply(embedding_extend, resample),
                         [-1, feature_length * embedding_length])  # None * (nk)
     for i in range(0, len(hidden_layer)):
-        if i is 0:
+        if i == 0:
             row = feature_length * embedding_length
         else:
             row = hidden_layer[i - 1]

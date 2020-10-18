@@ -52,11 +52,14 @@ model = Sequential()
 model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
                  input_shape=input_shape))
-model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
+
+# 将输入展平。不影响批量大小。
 model.add(Flatten())
-model.add(Dense(128, activation='relu'))
+
+model.add(Dense(128, activation='relu')) # 全连接层。
 model.add(Dropout(0.5))
 model.add(Dense(num_classes, activation='softmax'))
 
@@ -64,7 +67,9 @@ model.compile(loss=tensorflow.keras.losses.categorical_crossentropy,
               optimizer=tensorflow.keras.optimizers.Adadelta(),
               metrics=['accuracy'])
 
-tensorflow.keras.utils.plot_model(model, "mnist_cnn_model.png", show_shapes=True)
+# tensorflow.keras.utils.plot_model(model, "mnist_cnn_model.png", show_shapes=True)
+
+model.summary()
 
 model.fit(x_train, y_train,
           batch_size=batch_size,

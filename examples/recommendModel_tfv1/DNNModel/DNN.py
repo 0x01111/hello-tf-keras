@@ -33,7 +33,7 @@ class DNN(object):
     def forward_propagation(self):
         y_deep = self.x
         for i in range(0, len(self.hidden_layer)):
-            if i is 0:
+            if i == 0:
                 row = self.feature_length
             else:
                 row = self.hidden_layer[i-1]

@@ -60,7 +60,7 @@ class deepFMKaggle(object):
         y_deep = tf.reshape(tf.multiply(embedding_extend, resample),
                             [-1, self.feature_length*self.embedding_length])  # None * (nk)
         for i in range(0, len(self.hidden_layer)):
-            if i is 0:
+            if i == 0:
                 row = self.feature_length*self.embedding_length
             else:
                 row = self.hidden_layer[i-1]

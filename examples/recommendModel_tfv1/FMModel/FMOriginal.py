@@ -99,7 +99,7 @@ if __name__ == "__main__":
         sess.run(tf.local_variables_initializer())
         batch_size = model.batch_size
         train_num = 200
-        if(model.loss_type is "crossEntropyLoss"):
+        if(model.loss_type == "crossEntropyLoss"):
             for tn in range(1, train_num+1):
                 sample_flag = rn.randint(0, train_data.shape[0] - batch_size)
                 train_input = train_data[sample_flag: sample_flag+batch_size][:, 1:]
@@ -116,7 +116,7 @@ if __name__ == "__main__":
                     _, test_auc_value, test_mean_loss = sess.run([model.auc_reset, model.auc_value, model.mean_loss],
                                                                  feed_dict=feed_dict_test_data)
                     print("test_auc_value = ", test_auc_value, "test_mean_loss = ", test_mean_loss)
-        elif(model.loss_type is "logitLoss"):
+        elif(model.loss_type == "logitLoss"):
             for i in range(0, len(train_data)):
                 if (train_data[i, 0] == 0):
                     train_data[i, 0] = -1

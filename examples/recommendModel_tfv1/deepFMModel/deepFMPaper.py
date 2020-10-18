@@ -1,7 +1,9 @@
 import math
 import numpy as np
 import random as rn
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 class deepFMPaper(object):
 
@@ -63,7 +65,7 @@ class deepFMPaper(object):
         y_deep = tf.reshape(tf.multiply(embedding_extend, resample),
                             [-1, self.feature_length*self.embedding_length])  # None * (nk)
         for i in range(0, len(self.hidden_layer)):
-            if i is 0:
+            if i == 0:
                 row = self.feature_length*self.embedding_length
             else:
                 row = self.hidden_layer[i-1]
@@ -111,7 +113,7 @@ class deepFMPaper(object):
 
 if __name__ == "__main__":
     # 数据预处理#
-    data = np.loadtxt("", dtype=float)
+    data = np.loadtxt("../dataSet/data.txt", dtype=float)
     train_data = data[0:math.ceil(len(data) * 0.6)]
     test_data = data[math.ceil(len(data) * 0.6):len(data)]
     feature_length = train_data.shape[1] - 1

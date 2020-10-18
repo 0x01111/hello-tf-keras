@@ -12,12 +12,12 @@ and 99.2% for the last five digits after transfer + fine-tuning.
 from __future__ import print_function
 
 import datetime
-import keras
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras import backend as K
+import tensorflow.keras
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
+from tensorflow.keras import backend as K
 
 now = datetime.datetime.now
 
@@ -52,8 +52,8 @@ def train_model(model, train, test, num_classes):
     print(x_test.shape[0], 'test samples')
 
     # convert class vectors to binary class matrices
-    y_train = keras.utils.to_categorical(train[1], num_classes)
-    y_test = keras.utils.to_categorical(test[1], num_classes)
+    y_train = tensorflow.keras.utils.to_categorical(train[1], num_classes)
+    y_test = tensorflow.keras.utils.to_categorical(test[1], num_classes)
 
     model.compile(loss='categorical_crossentropy',
                   optimizer='adadelta',

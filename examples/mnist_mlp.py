@@ -16,6 +16,12 @@ from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adagrad
+from tensorflow.keras.optimizers import Adadelta
+from tensorflow.keras.optimizers import Adamax
+from tensorflow.keras.optimizers import Nadam
 
 batch_size = 128
 num_classes = 10
@@ -37,19 +43,23 @@ print(x_test.shape[0], 'test samples')
 y_train = tensorflow.keras.utils.to_categorical(y_train, num_classes)
 y_test = tensorflow.keras.utils.to_categorical(y_test, num_classes)
 
+print(y_test[1:4])
+# 激活函数
+# 1. https://keras.io/zh/activations/
+# 2.
 model = Sequential()
 model.add(Dense(512, activation='relu', input_shape=(784,)))
-model.add(Dropout(0.2))
+model.add(Dropout(0.2)) # https://www.zhihu.com/question/61751133
 model.add(Dense(512, activation='relu'))
-model.add(Dropout(0.2))
+model.add(Dropout(0.2)) # 0.9999 时候效果最差，相当于随机猜了
 model.add(Dense(num_classes, activation='softmax'))
 
-model.summary()
-
-tensorflow.keras.utils.plot_model(model, "./mnist_mlp_model.png", show_shapes=True)
-
+# tensorflow.keras.utils.plot_model(model, "./mnist_mlp_model.png", show_shapes=True)
+# 优化器说明
+# 1. https://zhuanlan.zhihu.com/p/34169434
+# 2. https://keras.io/zh/optimizers/#adagrad
 model.compile(loss='categorical_crossentropy',
-              optimizer=RMSprop(),
+              optimizer=Adam(),
               metrics=['accuracy'])
 
 history = model.fit(x_train, y_train,
@@ -60,3 +70,8 @@ history = model.fit(x_train, y_train,
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
+model.summary()
+
+print(history.history)
+from myplot import *
+plot_curve(history)

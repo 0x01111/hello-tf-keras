@@ -15,13 +15,13 @@ Reaches 0.93 train/test accuracy after 900 epochs
 
 from __future__ import print_function
 
-import keras
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense, Activation
-from keras.layers import SimpleRNN
-from keras import initializers
-from keras.optimizers import RMSprop
+import tensorflow.keras
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Activation
+from tensorflow.keras.layers import SimpleRNN
+from tensorflow.keras import initializers
+from tensorflow.keras.optimizers import RMSprop
 
 batch_size = 32
 num_classes = 10
@@ -41,12 +41,16 @@ x_test = x_test.astype('float32')
 x_train /= 255
 x_test /= 255
 print('x_train shape:', x_train.shape)
+print('x_test shape:', x_test.shape)
 print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
 
 # convert class vectors to binary class matrices
-y_train = keras.utils.to_categorical(y_train, num_classes)
-y_test = keras.utils.to_categorical(y_test, num_classes)
+y_train = tensorflow.keras.utils.to_categorical(y_train, num_classes)
+y_test = tensorflow.keras.utils.to_categorical(y_test, num_classes)
+
+print('y_train shape:', y_train.shape)
+print('y_test shape:', y_test.shape)
 
 print('Evaluate IRNN...')
 model = Sequential()
@@ -71,3 +75,9 @@ model.fit(x_train, y_train,
 scores = model.evaluate(x_test, y_test, verbose=0)
 print('IRNN test score:', scores[0])
 print('IRNN test accuracy:', scores[1])
+
+model.summary()
+
+print(history.history)
+from myplot import *
+plot_curve(history)

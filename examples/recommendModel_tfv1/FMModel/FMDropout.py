@@ -64,7 +64,7 @@ class FMDropout(object):
     AUC
     """
     def model_auc(self):
-            self.auc_reset, self.auc_value = tf.metrics.auc(self.y_actual, self.y_predict)
+        self.auc_reset, self.auc_value = tf.metrics.auc(self.y_actual, self.y_predict)
 
     """
     构建FMDropout模型图

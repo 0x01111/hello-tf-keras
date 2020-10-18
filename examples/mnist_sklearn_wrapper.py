@@ -5,13 +5,13 @@ Builds simple CNN models on MNIST and uses sklearn's GridSearchCV to find best m
 
 from __future__ import print_function
 
-import keras
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras.wrappers.scikit_learn import KerasClassifier
-from keras import backend as K
+import tensorflow.keras
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
+from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
+from tensorflow.keras import backend as K
 from sklearn.model_selection import GridSearchCV
 
 
@@ -38,8 +38,8 @@ x_train /= 255
 x_test /= 255
 
 # convert class vectors to binary class matrices
-y_train = keras.utils.to_categorical(y_train, num_classes)
-y_test = keras.utils.to_categorical(y_test, num_classes)
+y_train = tensorflow.keras.utils.to_categorical(y_train, num_classes)
+y_test = tensorflow.keras.utils.to_categorical(y_test, num_classes)
 
 
 def make_model(dense_layer_sizes, filters, kernel_size, pool_size):
